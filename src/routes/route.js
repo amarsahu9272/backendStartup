@@ -2,39 +2,31 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/test-me', function (req, res) {
-    res.send('any dummy text')
+    res.send('Me Testing')
 });
 
 
-router.get('/test-you', function (req, res) {
+router.get('/test-get', function (req, res) {
     console.log("I am here")
-    res.send("very important text")
+    res.send({ a: 1, b: 2 })
 })
 
-router.get('/movies/:name/:index', function (req, res) {
-    const movie = ["Rang de basanti", "The shining", "Lord of the rings"]
-    console.log(`person who requested:${req.params.name}`)
-    if (req.params.index > movie.length || req.params.index < 0) {
-        console.log("Enter Valid Index Position")
-    }
-    else {
-        console.log(`Index position is ${req.params.index}:${movie[req.params.index]}`)
-    }
-
-    res.send(movie)
-    //res.send(`Index position is ${req.params.index}:${movie[req.params.index]}`)
+router.post('/test-post', function (req, res) {
+    console.log("I am here")
+    res.send([1, 2, 3, 4])
 })
 
-router.get('/films', function (req, res) {
-    let arrObj = [
-        { "id": 1, "name": "The Shining" },
-        { "id": 2, "name": "Incendies" },
-        { "id": 3, "name": "Rang de Basanti" },
-        { "id": 4, "name": "Finding Nemo" }
-    ]
-
-    res.send(arrObj)
-
+router.post('/test-post1', function (req, res) {
+    console.log(req.body.user)
+    res.send({ a: 1, b: 2 })
 })
+
+router.post('/test-post2', function (req, res) {
+    let arr = [12, 24]
+    let ele = req.body.element
+    arr.push(ele)
+    res.send({ mesg: arr, status: true })
+})
+
 
 module.exports = router;
