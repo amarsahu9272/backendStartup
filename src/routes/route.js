@@ -1,31 +1,56 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/test-me', function (req, res) {
-    res.send('Me Testing')
-});
+let players =
+    [
+        {
+            "name": "manish",
+            "dob": "1/1/1995",
+            "gender": "male",
+            "city": "jalandhar",
+            "sports": [
+                "swimming"
+            ]
+        },
+        {
+            "name": "gopal",
+            "dob": "1/09/1995",
+            "gender": "male",
+            "city": "delhi",
+            "sports": [
+                "soccer"
+            ]
+        },
+        {
+            "name": "lokesh",
+            "dob": "1/1/1990",
+            "gender": "male",
+            "city": "mumbai",
+            "sports": [
+                "soccer"
+            ]
+        },
+    ]
 
 
-router.get('/test-get', function (req, res) {
-    console.log("I am here")
-    res.send({ a: 1, b: 2 })
-})
+const player = []
 
-router.post('/test-post', function (req, res) {
-    console.log("I am here")
-    res.send([1, 2, 3, 4])
-})
+router.post('/players', function (req, res) {
+    const { name, dob, city, gender, sports } = req.body
+    if (!name || !city || !dob || !gender || !sports) {
+        return res.send('All Fields Are Mandatory')
+    }
 
-router.post('/test-post1', function (req, res) {
-    console.log(req.body.user)
-    res.send({ a: 1, b: 2 })
-})
+    const playerDetails = players.find(serch => serch.name === req.body.name)
 
-router.post('/test-post2', function (req, res) {
-    let arr = [12, 24]
-    let ele = req.body.element
-    arr.push(ele)
-    res.send({ mesg: arr, status: true })
+    if (playerDetails) {
+        return res.send('player already present')
+    }
+    else {
+        players.push(req.body)
+        return res.send(players)
+    }
+
 })
 
 
