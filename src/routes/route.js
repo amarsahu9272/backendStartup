@@ -14,7 +14,7 @@ router.get('/test-me', function (req, res) {
   console.log(`Result from underscore function is ${result}`)
 
 
-  res.send('any dummy text')
+  res.send('session module')
 });
 
 
