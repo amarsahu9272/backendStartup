@@ -1,18 +1,13 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/test-me', function (req, res) {
-    res.send('Me Testing')
-});
-
-
 router.get('/test-get', function (req, res) {
-    console.log("I am here")
+    console.log("/test-get")
     res.send({ a: 1, b: 2 })
 })
 
 router.post('/test-post', function (req, res) {
-    console.log("I am here")
+    console.log("test-post")
     res.send([1, 2, 3, 4])
 })
 
