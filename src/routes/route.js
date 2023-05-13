@@ -30,10 +30,6 @@ router.get('/path-params/:name/:lastname', function (req, res) {
 
 
 
-
-
-
-
 // In JavaScript, query parameters are a common way to pass information 
 // from the client-side (e.g., a web browser) to the server-side. 
 // Query parameters are typically appended to the end of a URL and are indicated by a question mark (?) 
@@ -51,5 +47,17 @@ router.get('/query-params', function (req, res) {
 // When a GET request is made to this route, Express automatically extracts 
 // the values of parameters from the URL and stores them in the 
 // req.query object. We can then access these values using req.query.productName and req.query.productPrice.
+// filter out all the numbers that are greater than "input" ( (input is received from query params)
+let myArr = [23, 45, 67, 281394, 32424, 423, 24, 42323, 4, 234, 12, 34]
+router.post("/postQueryLength", function (req, res) {
+  let input = req.query.input
+  let finalArr = []
+  for (i = 0; i < myArr.length; i++) {
+
+    if (myArr[i] > input)
+      finalArr.push(myArr[i])
+  }
+  res.send({ data: finalArr, status: true })
+})
 
 module.exports = router;
