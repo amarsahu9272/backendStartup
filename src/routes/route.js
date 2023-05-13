@@ -1,14 +1,20 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/test-me', function (req, res) {
-    res.send('any dummy text')
+router.get('/path-params/:name/:lastname', function (req, res) {
+  res.send({
+    'name': req.params.name,
+    'lastname': req.params.lastname
+  });
 });
 
 
-router.get('/test-you', function(req, res){
-    console.log("I am here")
-    res.send("very important text")
+router.get('/query-params', function (req, res) {
+
+  res.send({
+    "productName": req.query.productName,
+    "productPrice": req.query.productPrice,
+  })
 })
 
 
