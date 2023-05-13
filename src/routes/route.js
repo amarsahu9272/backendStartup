@@ -15,7 +15,8 @@ router.get('/missing', function (req, res) {
 })
 
 router.get('/missing2', function (req, res) {
-  let arr = [33, 34, 35, 37, 38];
+  const arr = [1, 2, 3, 5, 6, 7, 8, 9];
+  // let arr = [33, 34, 35, 37, 38];
   let sum = 0;
   for (let i = 0; i < arr.length; i++) {
     sum += arr[i];
