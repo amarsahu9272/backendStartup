@@ -1,36 +1,29 @@
 const express = require('express');
 const router = express.Router();
 
-
-
-router.get('/test-you', function (req, res) {
-  console.log("test-you")
-  res.send("very important text")
-})
-
-router.get('/movies/:name/:index', function (req, res) {
-  const movie = ["Rang de basanti", "The shining", "Lord of the rings"]
-  console.log(`person who requested:${req.params.name}`)
-  if (req.params.index > movie.length || req.params.index < 0) {
-    console.log("Enter Valid Index Position")
+router.get('/missing', function (req, res) {
+  const arr = [1, 2, 3, 5, 6, 7, 8, 9];
+  let n = arr[arr.length - 1];
+  let missingNumber;
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    sum += arr[i];
   }
-  else {
-    console.log(`Index position is ${req.params.index}:${movie[req.params.index]}`)
+  missingNumber = (n * (n + 1)) / 2 - sum;
+  res.send({ data: missingNumber })
+
+})
+
+router.get('/missing2', function (req, res) {
+  let arr = [33, 34, 35, 37, 38];
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    sum += arr[i];
   }
-
-  res.send(movie)
+  let missingNumber;
+  let n = arr[arr.length - 1];
+  let m = arr[0] - 1;
+  missingNumber = (n * (n + 1) / 2) - (m * (m + 1) / 2) - sum;
+  res.send({ data: missingNumber })
 })
-
-router.get('/films', function (req, res) {
-  let arrObj = [
-    { "id": 1, "name": "The Shining" },
-    { "id": 2, "name": "Incendies" },
-    { "id": 3, "name": "Rang de Basanti" },
-    { "id": 4, "name": "Finding Nemo" }
-  ]
-
-  res.send(arrObj)
-
-})
-
 module.exports = router;
